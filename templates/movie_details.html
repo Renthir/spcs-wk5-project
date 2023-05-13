@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}{{ movie.title }} - Details{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>{{ movie.title }}</h1>
+    
+    <p>
+      {{ movie.overview }}
+    </p>
+
+    <h3>User Ratings:</h3>
+    {% for rating in ratings %}
+    <p>
+        User {{ rating.user_id }} Rated a {{ rating.score }}
+    </p>
+    {% endfor %}
+    <h3>Average Score:</h3>
+    <p>
+        {{ "%.1f" % avg_score }}
+    </p>
+
+    <a href="/rate/{{movie.movie_id}}">Rate this movie!</a>
+</div>
+<div class="container">
+    <img src="{{ movie.poster_path }}" class="img-fluid">
+</div>
+{% endblock %}
